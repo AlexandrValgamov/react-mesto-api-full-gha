@@ -1,0 +1,32 @@
+.auth__save-button {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+
+  color: #000000;
+  background: #FFFFFF;
+  border-radius: 2px;
+  width: 358px;
+  height: 50px;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.auth__save-button:hover {
+  opacity: .8;
+}
+
+@media screen and (max-width: 740px) {
+  .auth__save-button {
+    font-size: 14px;
+    line-height: 17px;
+    width: 238px;
+    height: 46px;
+    margin: 15px auto 25px;
+  }
+}

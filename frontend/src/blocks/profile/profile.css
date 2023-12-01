@@ -1,0 +1,33 @@
+.profile {
+  max-width: 880px;
+  display: grid;
+  grid-template-columns: 120px fit-content(528px) 1fr fit-content(282px);
+  grid-template-rows: 70px 50px;
+  grid-template-areas:
+  "avatar title edit-button add-button"
+  "avatar subtitle subtitle add-button";
+  margin: 0 auto;
+  padding: 40px 0 50px;
+}
+
+@media screen and (max-width: 880px) {
+  .profile {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .profile {
+    padding-top: 42px;
+    grid-template-columns: 235px 47px;
+    grid-template-rows: 120px 58px 26px 82px;
+    grid-template-areas:
+    "avatar avatar"
+    "title edit-button"
+    "subtitle subtitle"
+    "add-button add-button";
+    justify-content: center;
+    justify-items: center;
+    padding-bottom: 36px;
+  }
+}

@@ -1,0 +1,22 @@
+.popup__input {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+
+  padding: 0;
+  width: 358px;
+  border: none;
+  border-bottom: 1px solid #00000033;
+  margin: 0 auto;
+  padding-bottom: 9.2px;
+}
+
+@media screen and (max-width: 740px) {
+  .popup__input {
+    width: 238px;
+    padding-bottom: 9.2px;
+  }
+}

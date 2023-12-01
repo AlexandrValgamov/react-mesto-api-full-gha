@@ -1,0 +1,6 @@
+.popup__save-button_disable {
+  background: transparent;
+  border: 1px solid #00000033;
+  color: #00000033;
+  box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.15);
+}

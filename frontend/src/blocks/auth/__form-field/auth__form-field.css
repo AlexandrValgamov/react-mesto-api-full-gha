@@ -1,0 +1,4 @@
+.auth__form-field {
+  display: flex;
+  flex-direction: column;
+}
