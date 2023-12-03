@@ -7,7 +7,7 @@ const router = require('./routes');
 const { createUser, login } = require('./controllers/users');
 const exceptionHandler = require('./middlewares/exceptionHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const { corsHandler } = require('./middlewares/cors');
+const corsHandler = require('./middlewares/cors');
 
 const {
   PORT = 3000,
