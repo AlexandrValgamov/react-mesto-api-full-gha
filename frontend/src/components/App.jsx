@@ -39,7 +39,7 @@ export default function App() {
   const tokenCheck = (jwt) => {
     auth.getContent(jwt)
       .then((res) => {
-        handleAuthorize(res.data.email)
+        handleAuthorize(res.email)
       })
       .catch(() => {
         setLoggedIn(false);
@@ -65,7 +65,7 @@ export default function App() {
         setIsInfoTooltipOpen(true);
         console.error;
       });
-  };
+  }
 
   function handleRegister(e) {
     e.preventDefault();
@@ -82,7 +82,7 @@ export default function App() {
         setIsInfoTooltipOpen(true);
         console.error;
       });
-  };
+  }
 
   useEffect(() => {
     const token = localStorage.getItem('jwt');
@@ -94,7 +94,7 @@ export default function App() {
       Promise.all([api.getUserInfo(), api.getInitialCards()])
         .then(([user, cards]) => {
           setCurrentUser(user);
-          setCards(cards);
+          setCards(cards.reverse());
         })
         .catch(console.error);
     }
@@ -119,29 +119,29 @@ export default function App() {
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
-  };
+  }
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
-  };
+  }
 
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
-  };
+  }
 
   function handleCardClick(card) {
     setSelectedCard(card);
-  };
+  }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
 
     api.changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
       })
       .catch(console.error);
-  };
+  }
 
   function handleCardDelete(card) {
     api.deleteCard(card._id)
@@ -149,7 +149,7 @@ export default function App() {
         setCards((state) => state.filter((c) => c._id !== card._id));
       })
       .catch(console.error);
-  };
+  }
 
   function handleUpdateUser({ name, about }) {
     api.updateUserInfo(name, about)
@@ -158,7 +158,7 @@ export default function App() {
         closeAllPopups();
       })
       .catch(console.error);
-  };
+  }
 
   function handleUpdateAvatar({ avatar }) {
     api.updateAvatar(avatar)
@@ -167,7 +167,7 @@ export default function App() {
         closeAllPopups();
       })
       .catch(console.error);
-  };
+  }
 
   function handleAddPlaceSubmit({ name, link }) {
     api.postCard(name, link)
@@ -176,7 +176,7 @@ export default function App() {
         closeAllPopups();
       })
       .catch(console.error);
-  };
+  }
 
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
@@ -184,7 +184,7 @@ export default function App() {
     setIsAddPlacePopupOpen(false);
     setIsInfoTooltipOpen(false);
     setSelectedCard({});
-  };
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

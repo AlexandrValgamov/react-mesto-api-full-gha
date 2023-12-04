@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 export default function Login({ onLogin, formValue, setFormValue }) {
 
@@ -50,3 +50,12 @@ export default function Login({ onLogin, formValue, setFormValue }) {
     </div>
   )
 }
+
+Login.propTypes = {
+  onLogin: PropTypes.func,
+  formValue: PropTypes.shape({
+    email: PropTypes.string,
+    password: PropTypes.string,
+  }),
+  setFormValue: PropTypes.func,
+};

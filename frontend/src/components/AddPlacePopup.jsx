@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import PropTypes from 'prop-types';
 import PopupWithForm from "./PopupWithForm";
 
 export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
@@ -25,7 +26,7 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
       name,
       link,
     });
-  };
+  }
 
   return (
     <PopupWithForm
@@ -65,3 +66,9 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
     </PopupWithForm>
   )
 }
+
+AddPlacePopup.propTypes = {
+  isOpen: PropTypes.bool,
+  onClose: PropTypes.func,
+  onAddPlace: PropTypes.func,
+};

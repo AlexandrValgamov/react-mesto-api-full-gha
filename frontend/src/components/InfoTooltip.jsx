@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from 'prop-types';
 
 export default function InfoTooltip({ isOpen, onClose, isSuccess }) {
   return (
@@ -21,3 +21,9 @@ export default function InfoTooltip({ isOpen, onClose, isSuccess }) {
     </section>
   )
 }
+
+InfoTooltip.propTypes = {
+  isOpen: PropTypes.bool,
+  onClose: PropTypes.func,
+  isSuccess: PropTypes.bool,
+};

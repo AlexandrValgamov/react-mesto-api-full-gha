@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 export default function PopupWithForm({ title, name, buttonText, isOpen, onClose, onSubmit, children }) {
   return(
     <section className={`popup popup_type_${name}${isOpen ? ' popup_opened' : ''}`}>
@@ -14,3 +15,14 @@ export default function PopupWithForm({ title, name, buttonText, isOpen, onClose
     </section>
   )
 }
+
+
+PopupWithForm.propTypes = {
+  title: PropTypes.string,
+  name: PropTypes.string,
+  buttonText: PropTypes.string,
+  isOpen: PropTypes.bool,
+  onClose: PropTypes.func,
+  onSubmit: PropTypes.func,
+  children: PropTypes.node,
+};

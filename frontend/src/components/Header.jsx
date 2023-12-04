@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 
 export default function Header({ loggedIn, location, email, onSignOut }) {
@@ -17,7 +18,7 @@ export default function Header({ loggedIn, location, email, onSignOut }) {
       setLinkTo("/sign-in");
       setLinkText("Выход");
     }
-  }, [location]);
+  }, [location, loggedIn]);
 
   return (
     <header className="header">
@@ -29,3 +30,12 @@ export default function Header({ loggedIn, location, email, onSignOut }) {
     </header>
   )
 }
+
+Header.propTypes = {
+  loggedIn: PropTypes.bool,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }),
+  email: PropTypes.string,
+  onSignOut: PropTypes.func,
+};

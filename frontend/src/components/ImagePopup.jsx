@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 export default function ImagePopup({ card, onClose }) {
   return(
     <section className={`popup popup_type_zoom${Object.keys(card).length ? ' popup_opened' : ''}`} aria-label="Фото">
@@ -11,3 +12,11 @@ export default function ImagePopup({ card, onClose }) {
     </section>
   )
 }
+
+ImagePopup.propTypes = {
+  card: PropTypes.shape({
+    link: PropTypes.string,
+    name: PropTypes.string,
+  }),
+  onClose: PropTypes.func,
+};

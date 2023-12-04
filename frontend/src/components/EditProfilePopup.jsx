@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import PopupWithForm from "./PopupWithForm";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
@@ -61,3 +62,9 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
     </PopupWithForm>
   )
 }
+
+EditProfilePopup.propTypes = {
+  isOpen: PropTypes.bool,
+  onClose: PropTypes.func,
+  onUpdateUser: PropTypes.func,
+};
