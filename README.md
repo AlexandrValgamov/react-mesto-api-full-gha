@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.129.93
+IP 158.160.129.93
 
 Frontend https://alexandrv.nomoredomainsmonster.ru
 
