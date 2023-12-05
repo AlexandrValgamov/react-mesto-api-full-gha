@@ -1,7 +1,4 @@
-const allowedCors = [
-  'https://alexandrv.nomoredomainsmonster.ru',
-];
-const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
+const { allowedCors, DEFAULT_ALLOWED_METHODS } = require('../utils/constants');
 
 const corsHandler = (req, res, next) => {
   const { origin } = req.headers;
