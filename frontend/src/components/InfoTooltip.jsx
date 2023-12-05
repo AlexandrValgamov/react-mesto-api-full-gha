@@ -12,7 +12,7 @@ export default function InfoTooltip({ isOpen, onClose, isSuccess }) {
         />
         <img
           className="popup__image_type_icon"
-          src={isSuccess ? "../src/images/success-icon.svg" : "../src/images/error-icon.svg"}
+          src={isSuccess ? "/images/success-icon.svg" : "/images/error-icon.svg"}
         />
         <h2 className="popup__message">
           {isSuccess ? "Вы успешно зарегистрировались!" : "Что-то пошло не так! Попробуйте ещё раз."}
