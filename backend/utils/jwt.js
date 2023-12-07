@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const { JWT_SECRET, NODE_ENV } = process.env;
 const generateToken = (payload) => jwt.sign(payload, NODE_ENV ? JWT_SECRET : '980758d3d66cd05999d3bf561c2e242bb093fcb6006061b4ac06ced07d36a620', {
   expiresIn: '7d',
-  // expiresIn: 10,
 });
 
 // вставьте сюда JWT, который вернул публичный сервер

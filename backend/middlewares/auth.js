@@ -21,7 +21,6 @@ const auth = (req, res, next) => {
     }
     return next(new UnauthorizedError('С токеном что-то не так'));
   }
-  console.log(payload);
   req.user = payload;
   next();
 };

@@ -13,34 +13,9 @@ const ValidationErrorHandler = (error, next) => {
   return next(new BadRequestError(`Ошибка валидации. ${validationErrors.join(' ')}`));
 };
 
-const getUsers = async (req, res, next) => {
+const getUserByIdHandler = async (id, res, next) => {
   try {
-    const users = await User.find({});
-    res.send(users);
-  } catch (error) {
-    next(error);
-  }
-};
-
-const getUserById = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const user = await User.findById(id)
-      .orFail();
-    res.send(user);
-  } catch (error) {
-    if (error instanceof mongoose.Error.DocumentNotFoundError) {
-      return next(new NotFoundError('Пользователь с указанным id не найден.'));
-    }
-    next(error);
-  }
-};
-
-const getUserInfo = async (req, res, next) => {
-  const id = req.user._id;
-  try {
-    const user = await User.findById(id)
-      .orFail();
+    const user = await User.findById(id).orFail();
     res.send(user);
   } catch (error) {
     if (error instanceof mongoose.Error.DocumentNotFoundError) {
@@ -51,6 +26,25 @@ const getUserInfo = async (req, res, next) => {
     }
     next(error);
   }
+};
+
+const getUsers = async (req, res, next) => {
+  try {
+    const users = await User.find({});
+    res.send(users);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getUserById = async (req, res, next) => {
+  const { id } = req.params;
+  getUserByIdHandler(id, res, next);
+};
+
+const getUserInfo = async (req, res, next) => {
+  const id = req.user._id;
+  getUserByIdHandler(id, res, next);
 };
 
 const updateUser = async (req, res, next) => {
