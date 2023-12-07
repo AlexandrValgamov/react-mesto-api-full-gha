@@ -28,6 +28,26 @@ const getUserByIdHandler = async (id, res, next) => {
   }
 };
 
+const updateUserHandler = async (req, res, next, data) => {
+  try {
+    const user = await User.findByIdAndUpdate(
+      req.user._id,
+      data,
+      { new: true, runValidators: true },
+    )
+      .orFail();
+    res.send(user);
+  } catch (error) {
+    if (error instanceof mongoose.Error.ValidationError) {
+      return ValidationErrorHandler(error, next);
+    }
+    if (error instanceof mongoose.Error.DocumentNotFoundError) {
+      return next(new NotFoundError('Пользователь с указанным id не найден.'));
+    }
+    next(error);
+  }
+};
+
 const getUsers = async (req, res, next) => {
   try {
     const users = await User.find({});
@@ -48,45 +68,13 @@ const getUserInfo = async (req, res, next) => {
 };
 
 const updateUser = async (req, res, next) => {
-  try {
-    const { name, about } = req.body;
-    const user = await User.findByIdAndUpdate(
-      req.user._id,
-      { name, about },
-      { new: true, runValidators: true },
-    )
-      .orFail();
-    res.send(user);
-  } catch (error) {
-    if (error instanceof mongoose.Error.ValidationError) {
-      return ValidationErrorHandler(error, next);
-    }
-    if (error instanceof mongoose.Error.DocumentNotFoundError) {
-      return next(new NotFoundError('Пользователь с указанным id не найден.'));
-    }
-    next(error);
-  }
+  const { name, about } = req.body;
+  updateUserHandler(req, res, next, { name, about });
 };
 
 const updateUserAvatar = async (req, res, next) => {
   const { avatar } = req.body;
-  try {
-    const user = await User.findByIdAndUpdate(
-      req.user._id,
-      { avatar },
-      { new: true, runValidators: true },
-    )
-      .orFail();
-    res.send(user);
-  } catch (error) {
-    if (error instanceof mongoose.Error.ValidationError) {
-      return ValidationErrorHandler(error, next);
-    }
-    if (error instanceof mongoose.Error.DocumentNotFoundError) {
-      return next(new NotFoundError('Пользователь с указанным id не найден.'));
-    }
-    next(error);
-  }
+  updateUserHandler(req, res, next, { avatar });
 };
 
 const createUser = async (req, res, next) => {
